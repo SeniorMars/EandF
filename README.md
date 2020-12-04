@@ -1,4 +1,4 @@
 # EandF
-2nd to last project for softdev first semester
+Second to last project for first semester softdev.
 
-Project Made by Carlos Hernandez, Eric Lo, Amelia Chin
+Project made by Carlos Hernandez, Eric Lo, Amelia Chin, and Ari Schechter.
