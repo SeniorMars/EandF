@@ -9,3 +9,4 @@ Each entry should begin with the following format: firstL -- TIMESTAMP\n ( e.g.:
 <!-- Instructions -->
 
 CarlosH -- 2020-12-07 18:54
+Updated the structure of the project
