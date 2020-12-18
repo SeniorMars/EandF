@@ -8,8 +8,8 @@ Most recent entry at the bottom.
 Each entry should begin with the following format: firstL -- TIMESTAMP\n ( e.g.: topherM -- 1999-12-31 23:59 )
 <!-- Instructions -->
 
-CarlosH -- 2020-12-07 18:54
+carlosH -- 2020-12-07 18:54
 Updated the structure of the project, and created the basic application.
 
-AmeilaC -- 2020-12-17 28:00
-Along with the others created the first edition of desgin.pdf.
+ameliaC -- 2020-12-17 21:30
+Along with the others created the first edition of design.pdf. Fixed a few typos.
