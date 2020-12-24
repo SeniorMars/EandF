@@ -11,5 +11,8 @@ Each entry should begin with the following format: firstL -- TIMESTAMP\n ( e.g.:
 carlosH -- 2020-12-07 18:54
 Updated the structure of the project, and created the basic application.
 
-ameliaC -- 2020-12-17 21:30
-Along with the others created the first edition of design.pdf. Fixed a few typos.
+ameliaC, carlosH, arielS, ericL -- 2020-12-17 21:30
+Created the first edition of design.pdf. Fixed a few typos.
+
+ameliaC, carlosH, arielS, ericL -- 2020-12-23 20:26
+Edited design.pdf to add more specificity to our task breakdown. Reuploaded edited design.pdf.
