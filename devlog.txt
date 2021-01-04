@@ -22,4 +22,5 @@ ericL, ameliaC, arielS -- 2021-01-04 09:34
 -added deadlines into timeline
 -resolved all issues with comments
 -updated readme.txt's project title, description, and roles
+-discussed code that we worked on over break: db manager and flask app
 
