@@ -1,5 +1,5 @@
-# SomeProject by EandF
-Second to last project for first semester softdev @ stuy.
+# Blog by EandF
+a blog hosting site with register, login, logout functionality. users can view, create, and edit blogs and their posts. 
 
 ## Installation on Linux
 ```sh
@@ -11,7 +11,7 @@ Second to last project for first semester softdev @ stuy.
 ```
 
 ## Roles:
-- Carlos "Karl" Hernandez: PM
-- Eric Lo:
-- Amelia Chin:
-- Ari Schechter:
+- Carlos "Karl" Hernandez: PM, database manager, CSS for templates
+- Eric Lo: Flask app
+- Amelia Chin: HTML for Jinja templates
+- Ari Schechter: database manager
