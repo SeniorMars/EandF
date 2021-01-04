@@ -16,3 +16,10 @@ Created the first edition of design.pdf. Fixed a few typos.
 
 ameliaC, carlosH, arielS, ericL -- 2020-12-23 20:26
 Edited design.pdf to add more specificity to our task breakdown. Reuploaded edited design.pdf.
+
+ericL -- 2021-01-04 09:34
+-fixed date data type in design.pdf
+-added deadlines into timeline
+-resolved all issues with comments
+-updated readme.txt's project title, description, and roles
+
