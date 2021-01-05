@@ -2,14 +2,15 @@ import sqlite3
 
 
 # for testing only
-import os
-os.remove("./blogdata.db")
+# import os
+# os.remove("./blogdata.db")
 
+def init():
+    global DB_FILE, db, c
+    DB_FILE = "blogdata.db"
 
-DB_FILE = "blogdata.db"
-
-db = sqlite3.connect(DB_FILE)
-c = db.cursor()
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
 
 
 # creates the tables
