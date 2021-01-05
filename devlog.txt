@@ -24,3 +24,7 @@ ericL, ameliaC, arielS -- 2021-01-04 09:34
 -updated readme.txt's project title, description, and roles
 -discussed code that we worked on over break: db manager and flask app
 
+ericL, ameliaC, arielS, carlosH -- 2021-01-04 22:11
+-filled in the database-related in the flask app
+-wrote error, login, register templates
+-tested prototype, ran into bugs (database issues)
