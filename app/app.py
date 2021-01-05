@@ -2,51 +2,68 @@
 # SoftDev
 # P0: Da Art of Storytellin' / blog project
 # 2020-12-12
-from EandF.db_manager import checkLogin, createTables, getUserId, registerUser
+# from db_manager import checkLogin, createTables, getUserId, registerUser
+# import db_manager
 from flask import Flask, render_template, request, session
-import os, db_manager
+import os
+from db_manager import *
 app = Flask(__name__)
 app.secret_key = os.urandom(32)  # random 32 bit key
 
+init()
 createTables()
 
-#check if alr logged in
+# check if alr logged in
+
+
 @app.route("/")
 def home():
-    if 'username' in session: #<username> dpdt on form submission args
-        return render_template("success.html") #dpdt on home.html
-    
-    return render_template("login.html") #dpdt on login.html
+    if 'username' in session:  # <username> dpdt on form submission args
+        return render_template("success.html")  # dpdt on home.html
 
-#login func
-#the register button should be in the login template but not in the fxn to redirect to register
-@app.route("/loginRead", methods=['POST']) #takes info from the login form
+    return render_template("login.html")  # dpdt on login.html
+
+# login func
+# the register button should be in the login template but not in the fxn to redirect to register
+
+
+@app.route("/loginRead", methods=['POST'])  # takes info from the login form
 def login():
-    tempUser = request.form['username'] #<username> & <password> dpdt on form args
+    # <username> & <password> dpdt on form args
+    tempUser = request.form['username']
     tempPass = request.form['password']
     loginS, issue, user_id = checkLogin(tempUser, tempPass)
-    if loginS: #dpdt on DB methods to match user and pass
+    if loginS:  # dpdt on DB methods to match user and pass
         session['username'] = tempUser
         session['password'] = tempPass
         session['user_id'] = user_id
-        return render_template("success.html") #dpdt on home.html
+        return render_template("success.html")  # dpdt on home.html
 
-    #we will pass issue as an argument
+    # we will pass issue as an argument
     # vague error
-    return render_template("error.html", error = issue) #dpdt on error.html
+    return render_template("error.html", error=issue)  # dpdt on error.html
 
-#register func
-@app.route("/register") #this route should be callable on login.html
+# register func
+
+
+@app.route("/register")  # this route should be callable on login.html
 def register():
-    return render_template() #dpdt on register.html
+    return render_template("register.html")  # dpdt on register.html
 
-#take you to home page after creating account
+# take you to home page after creating account
+
+
 @app.route("/registerRead", methods=['POST'])
 def registerRedirect():
-    tempUser = request.form['username'] #<username> & <password> dpdt on form args
+    # <username> & <password> dpdt on form args
+    tempUser = request.form['username']
     tempPass = request.form['password']
     registerUser(tempUser, tempPass)
-    return render_template("registersuccess.html") #dpdt on home.html
+    return render_template("registersuccess.html")  # dpdt on home.html
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
 
 """
 #logout func
@@ -56,7 +73,7 @@ def logout():
     session.pop('password')
     return render_template() #dpdt on login.html
 
-#create blog func 
+#create blog func
 @app.route("/createBlog")
 def createBlogPage():
     return render_template() #createBlogForm.html
@@ -98,11 +115,6 @@ def viewBlog():
 """
 
 
-
-
-
-
-
 """
 import os
 from flask import Flask
@@ -135,3 +147,4 @@ def create_app(test_config=None):
 
     return app
 """
+
