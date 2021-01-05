@@ -2,29 +2,36 @@
 # SoftDev
 # P0: Da Art of Storytellin' / blog project
 # 2020-12-12
+from EandF.db_manager import checkLogin, createTables, getUserId, registerUser
 from flask import Flask, render_template, request, session
-import os
+import os, db_manager
 app = Flask(__name__)
 app.secret_key = os.urandom(32)  # random 32 bit key
+
+createTables()
 
 #check if alr logged in
 @app.route("/")
 def home():
     if 'username' in session: #<username> dpdt on form submission args
         return render_template() #dpdt on home.html
+    
     return render_template() #dpdt on login.html
 
 #login func
 #the register button should be in the login template but not in the fxn to redirect to register
-@app.route("/loginForm", methods=['POST']) #takes info from the login form
+@app.route("/loginRead", methods=['POST']) #takes info from the login form
 def login():
     tempUser = request.form['username'] #<username> & <password> dpdt on form args
     tempPass = request.form['password']
-    if True: #dpdt on DB methods to match user and pass
+    loginS, issue, user_id = checkLogin(tempUser, tempPass)
+    if loginS: #dpdt on DB methods to match user and pass
         session['username'] = tempUser
-        session['password'] = tempUser
+        session['password'] = tempPass
+        session['user_id'] = getUserId(tempUser)
         return render_template() #dpdt on home.html
 
+    #we will pass issue as an argument
     # vague error
     return render_template() #dpdt on error.html
 
@@ -34,11 +41,11 @@ def register():
     return render_template() #dpdt on register.html
 
 #take you to home page after creating account
-@app.route("/registerForm", methods=['POST'])
+@app.route("/registerRead", methods=['POST'])
 def registerRedirect():
     tempUser = request.form['username'] #<username> & <password> dpdt on form args
     tempPass = request.form['password']
-    #<SOME CODE> dpdt on DB methods to add user and pass into DB
+    registerUser(tempUser, tempPass)
     return render_template() #dpdt on home.html
 
 #logout func
@@ -47,11 +54,18 @@ def logout():
     session.pop('username') #<username> & <password> dpdt on form args
     session.pop('password')
     return render_template() #dpdt on login.html
-
+"""
 #create blog func 
-@app.route("/createBlogForm", methods=['POST'])
-def createBlog():
-    #<SOME CODE> dpdt on blog creation form and types of info users put in
+@app.route("/createBlog")
+def createBlogPage():
+    return render_template() #createBlogForm.html
+
+@app.route("/createBlogRead", methods=['POST'])
+def createBlogForm():
+    bT = request.form['blogTitle']
+    dC = request.form['dateCreated']
+    bB = request.form['blogBio']
+    createBlog(session['user_id'], session['username'], bT, dC, bB)
     return render_template() #dpdt on blog.html and the info asked from form
 
 #edit and add blog func
@@ -80,6 +94,13 @@ def viewYourBlog():
 def viewBlog():
     #<SOME CODE> dpdt on DB method to fetch blog data
     return render_template() #dpdt on blog.html
+"""
+
+
+
+
+
+
 
 """
 import os
