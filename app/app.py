@@ -10,7 +10,7 @@ from db_manager import *
 app = Flask(__name__)
 app.secret_key = os.urandom(32)  # random 32 bit key
 
-init()
+
 createTables()
 
 # check if alr logged in
@@ -60,6 +60,7 @@ def registerRedirect():
     tempPass = request.form['password']
     registerUser(tempUser, tempPass)
     return render_template("registersuccess.html")  # dpdt on home.html
+
 
 if __name__ == "__main__":
     app.run(debug=True)
@@ -147,4 +148,3 @@ def create_app(test_config=None):
 
     return app
 """
-
