@@ -99,13 +99,13 @@ def getUserBlogs(user_id: int) -> list:
     return blog_ids
 
 
-# returns a tuple (title, bio, date_created) for any given blog_id
+# returns a tuple (title, bio, date_created, blog_id) for any given blog_id
 def getBlogBasic(blog_id: int) -> tuple:
-    command = 'SELECT blog_title, blog_bio, date_created FROM blogs WHERE blog_id = "{}";'.format(
+    command = 'SELECT blog_title, blog_bio, date_created, blog_id FROM blogs WHERE blog_id = "{}";'.format(
         blog_id)
     blog_info = ()
     for row in c.execute(command):
-        blog_info += (row[0], row[1], row[2])
+        blog_info += (row[0], row[1], row[2], row[3])
     return blog_info
 
 

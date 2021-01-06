@@ -76,7 +76,17 @@ def homePage():
     names = []
     for _id in ids:
         names.append(getUsername(_id))
-    return render_template("home.html", names=names)
+
+    # createBlog(1, 'ddd', "test", "1/6/2021", "this is a test")
+
+    blog_info = []
+    for _id in ids:
+        for blog_id in getUserBlogs(_id):
+            blog_info.append(list(getBlogBasic(blog_id)))
+
+    return(str(blog_info))
+
+    # return render_template("home.html", names=names)
 
 
 """
