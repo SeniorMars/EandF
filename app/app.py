@@ -76,7 +76,7 @@ def homePage():
     names = []
     for _id in ids:
         names.append(getUsername(_id))
-    return str(names)
+    return render_template("home.html", names=names)
 
 
 """

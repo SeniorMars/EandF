@@ -59,6 +59,7 @@ def getUserId(username: str) -> int:
     return info[0]
 
 
+# returns a username for any given user_id
 def getUsername(user_id: int) -> str:
     command = 'SELECT username FROM users WHERE id = "{}";'.format(user_id)
     user = ""
@@ -67,12 +68,12 @@ def getUsername(user_id: int) -> str:
     return user
 
 
-# returns
+# returns a list of all the user_ids in the db
 def getAllUsers():
     command = 'SELECT id FROM users'
-    ids = ()
+    ids = []
     for row in c.execute(command):
-        ids += (row[0],)
+        ids.append(row[0])
     return ids
 
 
