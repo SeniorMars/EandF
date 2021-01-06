@@ -24,7 +24,7 @@ ericL, ameliaC, arielS -- 2021-01-04 09:34
 - fixed date data type in design.pdf; changed to text 
 - added deadlines into timeline
 - resolved all issues with comments, put "no action required" when appropriate
-- updated README.txt's project title, description, and roles
+- updated README.md's project title, description, and roles
 - discussed code that we worked on over break: db manager and flask app
 
 ericL, ameliaC, arielS, carlosH -- 2021-01-04 22:11
