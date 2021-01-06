@@ -62,9 +62,6 @@ def registerRedirect():
     return render_template("registersuccess.html")  # dpdt on home.html
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
 
 """
 #logout func
@@ -90,16 +87,25 @@ def createBlogForm():
 #edit and add blog func
 #<TBD>
 
-#delete blog entry func
-@app.route("/delete") #might need a delete form on yourBlog.html that records if user clicks a delete button
-def deleteEntry():
-    #<SOME CODE> dpdt on DB method to pop the entry fron the blog
-    return render_template() #dpdt on yourBlog.html
+# #delete blog entry func
+# @app.route("/delete") #might need a delete form on yourBlog.html that records if user clicks a delete button
+# def deleteEntry():
+#     #<SOME CODE> dpdt on DB method to pop the entry fron the blog
+#     return render_template() #dpdt on yourBlog.html
 
-#view profiles
-@app.route("/profiles")
-def profiles():
-    #<SOME CODE> dpdt on DB method to fetch user data
+# add blog entry func
+@app.route("/addEntry")
+def addBlogEntry():
+    pass
+
+#view profile
+@app.route("/profile")
+def profile():
+    #Eventually add in the ability to reference any user id
+    
+    blogs = getUserBlogs(session['user_id'])
+    for blog in blogs:
+        blog_title, blog_bio, date_created = getBlogBasic(blog)
     return render_template() #dpdt on profile.html
 
 #view your blog, has editing perms
@@ -114,6 +120,10 @@ def viewBlog():
     #<SOME CODE> dpdt on DB method to fetch blog data
     return render_template() #dpdt on blog.html
 """
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
 """
