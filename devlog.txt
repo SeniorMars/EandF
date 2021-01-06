@@ -30,6 +30,6 @@ ericL, ameliaC, arielS, carlosH -- 2021-01-04 22:11
 -tested prototype, ran into bugs (database issues)
 
 ericL, ameliaC, arielS, carlosH -- 2021-01-05 20:57
--ari and eric: added more db methods for getting user blog data and all users. updated profile route for flask app
+-ari and eric: added more db methods for getting user blog data and all users and getting username from user id. updated profile route for flask app, created home route.
 -carl and amelia: worked on createBlogForm.html, home.html, profile.html, blog.html, bootstrap
--everyone: fixed the database issues, successfully tested the login, register, logout, session remembering login functionalities
+-everyone: fixed the database issues, successfully tested the login, register, logout, session remembering login functionalities. began to integrate the flask app with the html templates in terms of passing arguments to one another.
