@@ -7,7 +7,7 @@ import sqlite3
 
 DB_FILE = "blogdata.db"
 
-db = sqlite3.connect(DB_FILE)
+db = sqlite3.connect(DB_FILE, check_same_thread=False)
 c = db.cursor()
 
 
