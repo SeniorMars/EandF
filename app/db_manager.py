@@ -3,14 +3,12 @@ import sqlite3
 
 # for testing only
 # import os
-# os.remove("./blogdata.db")
+# os.remove("../blogdata.db")
 
-def init():
-    global DB_FILE, db, c
-    DB_FILE = "blogdata.db"
+DB_FILE = "blogdata.db"
 
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
+db = sqlite3.connect(DB_FILE)
+c = db.cursor()
 
 
 # creates the tables
@@ -74,6 +72,25 @@ def getUserInfo(username: str):
     return info
 
 
+# returns a list of blog_ids given a user_id
+def getUserBlogs(user_id: int) -> list:
+    command = 'SELECT blog_id FROM blogs WHERE user_id = "{}";'.format(user_id)
+    blog_ids = []
+    for row in c.execute(command):
+        blog_ids.append(row[0])
+    return blog_ids
+
+
+# returns a tuple (title, bio, date_created) for any given blog_id
+def getBlogBasic(blog_id: int) -> tuple:
+    command = 'SELECT blog_title, blog_bio, date_created FROM blogs WHERE blog_id = "{}";'.format(
+        blog_id)
+    blog_info = ()
+    for row in c.execute(command):
+        blog_info += (row[0], row[1], row[2])
+    return blog_info
+
+
 # returns a tuple in the following format: (login_successful, issue, user_id)
 # login_successful will be either True (correct info) or False
 # issue will be None if login_successful is True. Otherwise will be "user not found" or
@@ -91,12 +108,25 @@ def checkLogin(username: str, password: str) -> tuple:
 # registers a new user by adding their info to the db
 # returns the unique user_id so that it can be added to the session in app.py
 def registerUser(username: str, password: str):
-    insertUser(username, password)
+    command = 'INSERT INTO users VALUES ("{}", "{}", NULL);'.format(
+        username, password)
+
+    c.execute(command)
+    db.commit()
 
 
 # creates a blog by inserting the necessary data into the db
 def createBlog(user_id: int, username: str, blog_title: str, date_created: str, blog_bio: str):
-    insertBlog(user_id, username, blog_title, date_created, blog_bio)
+    command = 'INSERT INTO blogs VALUES ({}, "{}", "{}", NULL, "{}", "{}");'.format(
+        user_id, username, blog_title, date_created, blog_bio)
+
+    c.execute(command)
+    db.commit()
+
+
+# creates an entry by inserting the necessary data into the db
+def createEntry():
+    pass
 
 
 # closes the database (only use if user logging out i think)
@@ -107,44 +137,24 @@ def close():
 # Helper functions (DO NOT USE IN app.py):
 
 
-# inserts a new user into the users table
-def insertUser(username: str, password: str):
-    command = 'INSERT INTO users VALUES ("{}", "{}", NULL);'.format(
-        username, password)
-
-    c.execute(command)
-    db.commit()
-
-
-# inserts a new blog into the blogs table
-def insertBlog(user_id: int, username: str, blog_title: str, date_created: str, blog_bio: str):
-    command = 'INSERT INTO blogs VALUES ({}, "{}", "{}", NULL, "{}", "{}");'.format(
-        user_id, username, blog_title, date_created, blog_bio)
-
-    c.execute(command)
-    db.commit()
-
-
-# inserts a new entry into the entries table
-def insertEntry(blog_id: int, username: str, entry_title: str, entry_content: str, date_created: str):
-    command = 'INSERT INTO entries VALUES ({}, "{}", NULL, "{}", "{}", "{}");'.format(
-        blog_id, username, entry_title, entry_content, date_created)
-
-    c.execute(command)
-    db.commit()
-
-
 # For testing only
-if __name__ == "__main__":
-    createTables()
-    registerUser("blah", "blahblah")
-    registerUser("ben", "dover")
-    print(getUserId("ben"))
-    createBlog(getUserId("ben"), "ben", "Doodoo",
-               "10/12/2020", "This is my blog.")
+# if __name__ == "__main__":
+#     createTables()
 
-    command = 'SELECT * FROM blogs'
-    for row in c.execute(command):
-        print(row)
+#     print(getUserId("ben"))
+#     # createBlog(getUserId("ben"), "ben", "Doodoo",
+#     #            "10/12/2020", "This is my blog.")
 
-    print(checkLogin("benn", "dover"))
+#     command = 'SELECT * FROM blogs'
+#     for row in c.execute(command):
+#         print(row)
+
+#     print(checkLogin("benn", "dover"))
+
+#     blogs = getUserBlogs(getUserId("ben"))
+
+#     for blog in blogs:
+#         title, bio, date = getBlogBasic(blog)
+#         print(title)
+#         print(bio)
+#         print(date)
