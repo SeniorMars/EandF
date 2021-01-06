@@ -59,6 +59,23 @@ def getUserId(username: str) -> int:
     return info[0]
 
 
+def getUsername(user_id: int) -> str:
+    command = 'SELECT username FROM users WHERE id = "{}";'.format(user_id)
+    user = ""
+    for row in c.execute(command):
+        user = row[0]
+    return user
+
+
+# returns
+def getAllUsers():
+    command = 'SELECT id FROM users'
+    ids = ()
+    for row in c.execute(command):
+        ids += (row[0],)
+    return ids
+
+
 # returns (username, password, user_id) for a given username. Returns None
 # if argument username is not present in the database
 def getUserInfo(username: str):

@@ -4,7 +4,7 @@
 # 2020-12-12
 # from db_manager import checkLogin, createTables, getUserId, registerUser
 # import db_manager
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect
 import os
 from db_manager import *
 app = Flask(__name__)
@@ -62,14 +62,24 @@ def registerRedirect():
     return render_template("registersuccess.html")  # dpdt on home.html
 
 
-
-"""
-#logout func
+# logout func
 @app.route("/logout")
 def logout():
-    session.pop('username') #<username> & <password> dpdt on form args
+    session.pop('username')  # <username> & <password> dpdt on form args
     session.pop('password')
-    return render_template() #dpdt on login.html
+    return redirect("/")  # dpdt on login.html
+
+
+@app.route("/home")
+def homePage():
+    ids = getAllUsers()
+    names = []
+    for _id in ids:
+        names.append(getUsername(_id))
+    return str(names)
+
+
+"""
 
 #create blog func
 @app.route("/createBlog")
@@ -123,7 +133,8 @@ def viewBlog():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.debug = True
+    app.run()
 
 
 """
