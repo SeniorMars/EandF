@@ -77,14 +77,17 @@ def homePage():
     for _id in ids:
         names.append(getUsername(_id))
 
-    # createBlog(1, 'ddd', "test", "1/6/2021", "this is a test")
+    # createBlog(1, 'ddd', "test4", "1/6/2021", "this is a test")
 
     blog_info = []
     for _id in ids:
         for blog_id in getUserBlogs(_id):
             blog_info.append(list(getBlogBasic(blog_id)))
 
-    return render_template("home.html", names=names, blog_info=blog_info)
+    mid = len(blog_info) // 2
+    return render_template("home.html", names=names,
+                           blog_info_part1=blog_info[:mid],
+                           blog_info_part2=blog_info[mid:])
 
     # return render_template("home.html", names=names)
 
@@ -108,6 +111,8 @@ def createBlogForm():
     createBlog(session['user_id'], session['username'], bT, dC, bB)
     return redirect("/home")
 
+    # return render_template("successBlog.html") #dpdt on blog.html and the info asked from form
+
 
 """
 #edit and add blog func
@@ -128,7 +133,7 @@ def addBlogEntry():
 @app.route("/profile")
 def profile():
     #Eventually add in the ability to reference any user id
-    
+
     blogs = getUserBlogs(session['user_id'])
     for blog in blogs:
         blog_title, blog_bio, date_created = getBlogBasic(blog)
@@ -140,7 +145,8 @@ def profile():
 
 @app.route("/yourBlog")
 def viewYourBlog():
-    blog_id = request.form('blog_num')
+    blog_id = request.args.get('blog_num')
+    # return str(blog_id)
 
     title = getBlogBasic(blog_id)[0]
 
