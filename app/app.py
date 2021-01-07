@@ -19,7 +19,7 @@ createTables()
 @app.route("/")
 def home():
     if 'username' in session:  # <username> dpdt on form submission args
-        return render_template("success.html")  # dpdt on home.html
+        return redirect("/home")  # dpdt on home.html
 
     return render_template("login.html")  # dpdt on login.html
 
@@ -37,7 +37,7 @@ def login():
         session['username'] = tempUser
         session['password'] = tempPass
         session['user_id'] = user_id
-        return render_template("success.html")  # dpdt on home.html
+        return redirect("/home")  # dpdt on home.html
 
     # we will pass issue as an argument
     # vague error
@@ -84,17 +84,16 @@ def homePage():
         for blog_id in getUserBlogs(_id):
             blog_info.append(list(getBlogBasic(blog_id)))
 
-    return render_template("home.html", names=names, blog_info=str(blog_info))
+    return render_template("home.html", names=names, blog_info=blog_info)
 
     # return render_template("home.html", names=names)
 
 
-"""
-
-#create blog func
+# create blog func
 @app.route("/createBlog")
 def createBlogPage():
-    return render_template() #createBlogForm.html
+    return render_template("createBlogForm.html")  # createBlogForm.html
+
 
 @app.route("/createBlogRead", methods=['POST'])
 def createBlogForm():
@@ -102,8 +101,10 @@ def createBlogForm():
     dC = request.form['dateCreated']
     bB = request.form['blogBio']
     createBlog(session['user_id'], session['username'], bT, dC, bB)
-    return render_template() #dpdt on blog.html and the info asked from form
+    return redirect("/home")
 
+
+"""
 #edit and add blog func
 #<TBD>
 
