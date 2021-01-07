@@ -1,0 +1,40 @@
+<!-- Team E and F (Karl Hernandez, Eric Lo, Amelia Chin, Ari Schechter) -->
+<!-- SoftDev -->
+<!-- P0 -- Da Art of Storytellin' (Pt. 2) / build a blog hosting website -->
+<!-- 2021-01-08 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{ blog_info[0] }}</title>
+</head>
+
+<body>
+	<h1>Team E and F</h1>
+	<p>Karl Hernandez, Eric Lo, Amelia Chin, Ari Schechter</p>
+
+	<h2>
+		{{ blog_info[0] }} <!-- blog title -->
+		by {{ username }} <!-- your username -->
+	</h2>
+
+	<button type="button">
+		<a href="/addEntry">New Entry</a>
+	</button>
+
+	{% for entry in entry_info %}
+		<h4>{{ entry[2] }}</a> <!-- entry title -->
+		<br>
+		<p>{{ entry[4] }}<p> <!-- date created -->
+		<br>
+		<p>{{ entry[3] }}<p> <!-- entry content -->
+		<br>
+		<br>
+	{% endfor %}
+
+</body>
+
+</html>
