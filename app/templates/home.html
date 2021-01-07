@@ -48,8 +48,9 @@
 	<!-- </header> -->
 
 
+	<br>
 	{% for blog in blog_info %}
-		<a href="/yourBlog">{{ blog[loop.index0] }}</a>
+		<a href="/yourBlog">{{ blog[0] }}</a>
 		<br>
 	{% endfor %}
 
