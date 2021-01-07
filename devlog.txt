@@ -46,3 +46,9 @@ ericL, ameliaC, arielS, carlosH -- 2021-01-05 20:57
 - successfully tested the login, register, logout, session remembering login functionalities
 - began to integrate the flask app with the html templates in terms of passing arguments to one another
 
+ericL, ameliaC, arielS, carlosH -- 2021-01-06 22:58
+-carl: added bootstrap and css styling to all of our pages, also helped out on forms/data passage on home.html
+-amelia: fixed looping issue in jinja for displaying all blogs on home page, added home.html, added yourBlog.html, started addEntryForm.html
+-eric & ari: updated home route, replaced a few render_templates() with redirect(), updated createBlogForm route, updated yourBlog route
+-ari & eric: updated getAllUsers(), updated getBlogBasic(), added createEntry(), added getBlogEntries(), added getEntryInfo() 
+-yourBlog remains untested
