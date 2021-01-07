@@ -47,17 +47,17 @@
 	</header>
 
 
-	<!-- {% for blogTitle in d %}
-		<a href="/yourBlog">{{ blogTitle }}</a>
+	{% for blog in blog_info %}
+		<a href="/yourBlog">{{ blog[0] }}</a>
 		<br>
-	{% endfor %} -->
+	{% endfor %}
 
 	<section class="container">
 	<h2>All Users</h2>
-	<!-- {% for user in names %}
+	{% for user in names %}
 		<a href="/profile">{{ user }}</a>
 		<br>
-	{% endfor %} -->
+	{% endfor %}
 	</section>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
