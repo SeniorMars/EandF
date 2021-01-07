@@ -99,7 +99,12 @@ def createBlogPage():
 def createBlogForm():
     bT = request.form['blogTitle']
     dC = request.form['dateCreated']
+
     bB = request.form['blogBio']
+    if bT == "" or dC == "" or bB == "":
+        # fix later by changing button to return to home
+        return render_template("error.html", error="You need to fill all three fields")
+
     createBlog(session['user_id'], session['username'], bT, dC, bB)
     return redirect("/home")
 

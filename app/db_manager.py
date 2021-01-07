@@ -109,6 +109,16 @@ def getBlogBasic(blog_id: int) -> tuple:
     return blog_info
 
 
+# returns a list of all entries for a given blog
+def getAllUserEntries(blog_id: int) -> tuple:
+    command = 'SELECT blog_id, entry_id, entry_title, entry_content, date_created FROM entries WHERE blog_id = "{}";'.format(
+        blog_id)
+    entry_info = ()
+    for row in c.execute(command):
+        entry_info += (row[0], row[1], row[2], row[3], row[4])
+    return entry_info
+
+
 # returns a tuple in the following format: (login_successful, issue, user_id)
 # login_successful will be either True (correct info) or False
 # issue will be None if login_successful is True. Otherwise will be "user not found" or
