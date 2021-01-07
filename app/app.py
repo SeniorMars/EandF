@@ -133,20 +133,33 @@ def profile():
     for blog in blogs:
         blog_title, blog_bio, date_created = getBlogBasic(blog)
     return render_template() #dpdt on profile.html
-
-#view your blog, has editing perms
-@app.route("/yourBlog")
-def viewYourBlog():
-    #<SOME CODE> dpdt on DB method to fetch blog data
-    return render_template() #dpdt on yourBlog.html
-
-#view other blogs, no editing perms
-@app.route("/blog")
-def viewBlog():
-    #<SOME CODE> dpdt on DB method to fetch blog data
-    return render_template() #dpdt on blog.html
 """
 
+# view your blog, has editing perms
+
+
+@app.route("/yourBlog")
+def viewYourBlog():
+    blog_id = request.form('blog_num')
+
+    title = getBlogBasic(blog_id)[0]
+
+    entry_info = []
+    for entry_id in getBlogEntries(blog_id):
+        entry_info.append(list(getEntryInfo(entry_id)))
+
+    # dpdt on yourBlog.html
+    return render_template("yourBlog.html", username=session['username'], entry_info=entry_info, blog_title=title)
+
+# view other blogs, no editing perms
+
+
+"""
+@app.route("/blog")
+def viewBlog():
+    # <SOME CODE> dpdt on DB method to fetch blog data
+    return render_template()  # dpdt on blog.html
+"""
 
 if __name__ == "__main__":
     app.debug = True
