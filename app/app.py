@@ -84,7 +84,7 @@ def homePage():
         for blog_id in getUserBlogs(_id):
             blog_info.append(list(getBlogBasic(blog_id)))
 
-    return(str(blog_info))
+    return render_template("home.html", names=names, blog_info=str(blog_info))
 
     # return render_template("home.html", names=names)
 
