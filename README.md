@@ -23,4 +23,3 @@ a blog hosting site with register, login, logout functionality. users can view, 
 - DO NOT USE THE " CHARACTER WHEN ADDING ENTRIES (actually just avoid it when typing any info into a form)
 - It doesn't make sense to be able to choose the date created for blog creation
 - We didn't get to implement deleting entries
-- There is no clear way to check who you are signed in as
