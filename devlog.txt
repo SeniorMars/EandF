@@ -101,3 +101,10 @@ ericL, ameliaC, arielS, carlosH -- 2021-01-08 01:10
 - added a logout button
 - in the navbar, included the username currently logged in
 - debugged our whole lives
+- edited README.md and added "Known Issues" section
+
+ericL -- 2021-01-08 01:30
+- renamed filed to fit project deliverables
+
+ameliaC -- 2021-01-08 01:46
+- created sample users, blogs, and entries in the db for in-class demo
