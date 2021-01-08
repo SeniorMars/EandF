@@ -67,14 +67,23 @@ carlosH -- 2021-01-06 22:58
 arielS, ameliaC, carlosH, ericL -- 2021-01-06 22:58
 - overall did a lot of testing and debugging, mostly on home.html, and fixed code accordingly
 
-arielS, ameliaC, carlosH, ericL -- 2021-01-07 21:16
+arielS, carlosH, ericL -- 2021-01-07 21:16
 - prevented people from registering with already existing usernames
-- separated the error after creating a blank blog from the error after a false login or registration
-- created blogError.html
-- created add entry functionality (although it redirects you to the home page in order to avoid an error with query strings)
+- separated the error page generated when creating a blank blog from the error page generated after a false login or registration
+- fixed add entry functionality to redirect user to the home page in order to avoid an error with query strings
 - added error for adding a blank entry to a blog
+
+ameliaC -- 2021-01-07 21:50
+- created blogError.html, entryError.html, blog.html
+- updated home.html, yourBlog.html, addEntryForm.html
+- made team flag
 - updated design doc to reflect edits in the project during development
+
+ericL, ameliaC -- 2021-01-07 22:23
+- created editEntryForm.html
 - updated yourBlog.html with edit entry buttons
-- added editEntryForm.html
-- added profile functionality and updated profile.html and profile route (viewing other people's profiles and oging to their blogs will take you to a non-editable blog)
+
+carlosH, arielS -- 2021-01-07 22:30
+- added profile functionality
+- updated profile.html and profile route (viewing other people's profiles and going to their blogs will take you to a non-editable blog)
 - added db method getBlogUser 
