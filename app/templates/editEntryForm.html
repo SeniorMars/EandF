@@ -1,0 +1,33 @@
+<!-- Team E and F (Karl Hernandez, Eric Lo, Amelia Chin, Ari Schechter) -->
+<!-- SoftDev -->
+<!-- P0 -- Da Art of Storytellin' (Pt. 2) / build a blog hosting website -->
+<!-- 2021-01-08 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Edit Entry</title>
+</head>
+
+<body>
+	<h1>Team E and F</h1>
+	<p>Karl Hernandez, Eric Lo, Amelia Chin, Ari Schechter</p>
+	
+	<!-- requires entry_title and entry_content to be passed from app -->
+	<h2>Edit entry below.</h2>
+	<form action="/editEntryRead" method="POST">
+		<label for="entryTitle">Entry Title</label>
+		<input type="text" name="entryTitle" value="{{ entry_title }}">
+		<br>
+		<label for="entryContent">Entry Content</label>
+		<input type="text" name="entryContent" value="{{ entry_content }}">
+		<br>
+		<input type="submit">
+	</form>	
+	
+</body>
+
+</html>

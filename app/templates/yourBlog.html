@@ -16,6 +16,10 @@
 	<h1>Team E and F</h1>
 	<p>Karl Hernandez, Eric Lo, Amelia Chin, Ari Schechter</p>
 
+	<button type="button">
+		<a href="/home">Home</a>
+	</button>
+
 	<h2>
 		{{ blog_title }} <!-- blog title -->
 		by {{ username }} <!-- your username -->
@@ -28,11 +32,15 @@
 	</button>
 
 	{% for entry in entry_info %}
-		<h4>{{ entry[2] }}</a> <!-- entry title -->
+		<h4>{{ entry[2] }}</h4> <!-- entry title -->
 		<br>
 		<p>{{ entry[4] }}<p> <!-- date created -->
 		<br>
 		<p>{{ entry[3] }}<p> <!-- entry content -->
+		<br>
+		<button type="button" value="{{ entry[1] }}">
+			<a href="/editEntry">Edit Entry</a>
+		</button>
 		<br>
 		<br>
 	{% endfor %}
