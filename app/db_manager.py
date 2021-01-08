@@ -164,7 +164,7 @@ def createBlog(user_id: int, username: str, blog_title: str, date_created: str, 
 
 # creates an entry by inserting the necessary data into the db
 def createEntry(blog_id: int, username: str, entry_title: str, entry_content: str, date_created: str):
-    command = 'INSERT INTO entries VALUES({}, "{}", "{}", "{}", "{}");'.format(
+    command = 'INSERT INTO entries VALUES({}, "{}", NULL, "{}", "{}", "{}");'.format(
         blog_id, username, entry_title, entry_content, date_created)
 
     c.execute(command)
