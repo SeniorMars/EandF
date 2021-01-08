@@ -145,7 +145,7 @@ def addEntryRead():
 @app.route("/profile")
 def profile():
     user = request.args.get('user')
-    blogs = getUserBlogs(user)
+    blogs = getUserBlogs(getUserId(user))
     blog_info = []
 
     for blog_id in blogs:
