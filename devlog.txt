@@ -106,5 +106,6 @@ ericL, ameliaC, arielS, carlosH -- 2021-01-08 01:10
 ericL -- 2021-01-08 01:30
 - renamed filed to fit project deliverables
 
-ameliaC -- 2021-01-08 01:46
+ameliaC -- 2021-01-08 01:56
 - created sample users, blogs, and entries in the db for in-class demo
+- added description to README.md
