@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- profile for a user --> 
+<!-- profile for a user -->
 
 <head>
 	<meta charset="UTF-8">
@@ -35,19 +35,19 @@
 			<div class="jumbotron jumbotron-fluid container-fluid">
 				<div class="container">
 					<h1 class="display-2">Hello {{ username }}!</h1>
-					<p>Total blogs: {{ count }}</p>
+					<p>Total blogs: {{ length }}</p>
 				</div>
 			</div>
 		</div>
 	</header>
 
-	{% for blog in user_blogs%}
+	{% for blog in blog_info %}
 	<div class="container">
 		<div class="jumbotron">
-			<h1>{{ blog_title }}</h1>
-			<h2>{{ blog_bio }}</h2>
-			<p>{{ blog_created }}</p>
-			<a href="/yourBlog?blog_num={{entry_id}}&user={{user_id}}">Read More</a>
+			<h1>{{ blog[0] }}</h1>
+			<h2>{{ blog[1] }}</h2>
+			<p>{{ blog[2] }}</p>
+			<a href="/yourBlog?blog_num={{blog[3]}}&user={{username}}">Read More</a>
 		</div>
 	</div>
 	{% endfor %}
@@ -60,4 +60,5 @@
 		crossorigin="anonymous"></script>
 
 </body>
+
 </html>
