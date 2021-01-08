@@ -87,3 +87,7 @@ carlosH, arielS -- 2021-01-07 22:30
 - added profile functionality
 - updated profile.html and profile route (viewing other people's profiles and going to their blogs will take you to a non-editable blog)
 - added db method getBlogUser 
+
+ericL, arielS -- 2021-01-08 00:10
+- added edit entry route and edit entry read route
+- added db method editEntry
