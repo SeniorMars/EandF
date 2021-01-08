@@ -23,3 +23,5 @@ a blog hosting site with register, login, logout functionality. users can view, 
 - DO NOT USE THE " CHARACTER WHEN ADDING ENTRIES (actually just avoid it when typing any info into a form)
 - It doesn't make sense to be able to choose the date created for blog creation
 - We didn't get to implement deleting entries
+- There are excessive home buttons
+# IF YOU STRIP THE CSS AWAY THEN YOU WILL NOT HAVE ACCESS TO THE LOGOUT BUTTON AND YOU WILL STRUGGLE WITH KNOWING WHO YOU ARE LOGGED IN AS IF YOU SOMEHOW USE MULTIPLE ACCOUNTS. TO LOGOUT, YOU NEED TO EITHER ENABLE CSS OR GO TO /LOGOUT. TO KNOW WHO YOU ARE, CLICK ON A BLOG YOU HAVE MADE AND IF IT IS YOURS, THEN YOU WILL HAVE EDITING PERMISSIONS.
