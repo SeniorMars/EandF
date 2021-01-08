@@ -14,7 +14,7 @@ A blog hosting site with register, login, logout functionality. Users can view, 
 - Carlos "Karl" Hernandez: PM, database manager, CSS for templates
 - Eric Lo: Flask app, king of catching mistakes
 - Amelia Chin: HTML for Jinja templates
-- Ari Schechter: database manager
+- Ariel Schechter: database manager
 (We eventually overlapped roles and worked with each other a lot on different areas.)
 
 ## Known Issues
