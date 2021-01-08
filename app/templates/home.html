@@ -13,10 +13,10 @@
 		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 	<title>Home</title>
 	<style>
-			ul {
-				display: inline-block;
-				text-align: left;
-			}
+		ul {
+			display: inline-block;
+			text-align: left;
+		}
 	</style>
 </head>
 
@@ -81,11 +81,16 @@
 
 	<section class="container">
 		<div class="jumbotron" style="text-align:center">
-			<h2>All Users</h2>
-			{% for user in names %}
-			<a href="/profile">{{ user }}</a>
-			<br>
-			{% endfor %}
+			<h2>Look at a user</h2>
+			<form action="/profile" method="get">
+			<ul>
+				{% for user in names %}
+				<li>
+					<button name="user" class="btn btn-link btnalign" style="padding:0" value="{{user}}"> {{user}} </button>
+				</li>
+				{% endfor %}
+			</ul>
+			</form>
 		</div>
 	</section>
 
