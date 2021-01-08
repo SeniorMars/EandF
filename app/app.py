@@ -71,7 +71,8 @@ def registerRedirect():
 def logout():
     session.pop('username')  # <username> & <password> dpdt on form args
     session.pop('password')
-    session.pop('blog_id')
+    if 'blog_id' in session:
+        session.pop('blog_id')
     return redirect("/")  # dpdt on login.html
 
 
@@ -92,7 +93,8 @@ def homePage():
     mid = len(blog_info) // 2
     return render_template("home.html", names=names,
                            blog_info_part2=blog_info[:mid],
-                           blog_info_part1=blog_info[mid:])
+                           blog_info_part1=blog_info[mid:],
+                           real_user=session['username'])
 
     # return render_template("home.html", names=names)
 
@@ -100,7 +102,7 @@ def homePage():
 # create blog func
 @app.route("/createBlog")
 def createBlogPage():
-    return render_template("createBlogForm.html")  # createBlogForm.html
+    return render_template("createBlogForm.html", real_user=session['username'])  # createBlogForm.html
 
 
 @app.route("/createBlogRead", methods=['POST'])
@@ -111,7 +113,7 @@ def createBlogForm():
     bB = request.form['blogBio']
     if bT == "" or dC == "" or bB == "":
         # fix later by changing button to return to home
-        return render_template("blogError.html", error="You need to fill all three fields")
+        return render_template("blogError.html", real_user=session['username'], error="You need to fill all three fields")
 
     createBlog(session['user_id'], session['username'], bT, dC, bB)
     return redirect("/home")
@@ -122,7 +124,7 @@ def createBlogForm():
 # add blog entry func
 @app.route("/addEntry")
 def addBlogEntry():
-    return render_template("addEntryForm.html")
+    return render_template("addEntryForm.html", real_user=session['username'])
 
 
 @app.route("/addEntryRead", methods=['POST'])
@@ -150,7 +152,9 @@ def profile():
     for blog_id in blogs:
         blog_info.append(list(getBlogBasic(blog_id)))
 
-    return render_template("profile.html", username=user, length=len(blog_info), blog_info=blog_info)
+    return render_template("profile.html", username=user,
+                           length=len(blog_info), blog_info=blog_info,
+                           real_user=session['username'])
 
 
 # view your blog, has editing perms
@@ -176,7 +180,7 @@ def viewYourBlog():
     for entry_id in getBlogEntries(blog_id):
         entry_info.append(list(getEntryInfo(entry_id)))
 
-    return render_template("yourBlog.html", username=session['username'], entry_info=entry_info, blog_title=title, blog_bio=bio)
+    return render_template("yourBlog.html", real_user=session['username'], username=session['username'], entry_info=entry_info, blog_title=title, blog_bio=bio)
 
 
 # view other blogs, no editing perms
@@ -192,7 +196,9 @@ def viewBlog():
     for entry_id in getBlogEntries(blog_id):
         entry_info.append(list(getEntryInfo(entry_id)))
 
-    return render_template("blog.html", username=username, entry_info=entry_info, blog_title=title, blog_bio=bio)
+    return render_template("blog.html", username=username,
+                           entry_info=entry_info, blog_title=title,
+                           blog_bio=bio, real_user=session['username'])
 
 
 @app.route("/editEntry", methods=['GET'])
@@ -202,7 +208,9 @@ def entryEdit():
     entry_title = getEntryInfo(entry_id)[2]
     entry_content = getEntryInfo(entry_id)[3]
 
-    return render_template("editEntryForm.html", entry_title=entry_title, entry_content=entry_content, entry_id=entry_id)
+    return render_template("editEntryForm.html", entry_title=entry_title,
+                           entry_content=entry_content, entry_id=entry_id,
+                           real_user=session['username'])
 
 
 @app.route("/editEntryRead", methods=['POST'])
@@ -213,7 +221,8 @@ def editEntryRead():
     entry_id = request.form['entry_id']
 
     if new_entry_content == "" or new_entry_title == "":
-        return render_template("entryEditError.html", error="Please fill in both fields")
+        return render_template("entryEditError.html",
+                               real_user=session['username'], error="Please fill in both fields")
 
     editEntry(entry_id, new_entry_title, new_entry_content)
     return redirect("/home")
@@ -222,37 +231,3 @@ def editEntryRead():
 if __name__ == "__main__":
     app.debug = True
     app.run()
-
-
-"""
-import os
-from flask import Flask
-
-def create_app(test_config=None):
-    # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
-    )
-
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        # load the test config if passed in
-        app.config.from_mapping(test_config)
-
-    # ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
-
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-
-    return app
-"""
