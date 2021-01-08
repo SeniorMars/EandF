@@ -57,9 +57,14 @@ def register():
 def registerRedirect():
     # <username> & <password> dpdt on form args
     tempUser = request.form['username']
+    users = []
+    for _id in getAllUsers():
+        users.append(getUsername(_id))
+    if tempUser in users:
+        return render_template("error.html", error="Username already exists")
     tempPass = request.form['password']
     registerUser(tempUser, tempPass)
-    return render_template("registersuccess.html")  # dpdt on home.html
+    return redirect("/")  # dpdt on home.html
 
 
 # logout func
@@ -106,7 +111,7 @@ def createBlogForm():
     bB = request.form['blogBio']
     if bT == "" or dC == "" or bB == "":
         # fix later by changing button to return to home
-        return render_template("error.html", error="You need to fill all three fields")
+        return render_template("blogError.html", error="You need to fill all three fields")
 
     createBlog(session['user_id'], session['username'], bT, dC, bB)
     return redirect("/home")
