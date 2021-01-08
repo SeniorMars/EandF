@@ -72,6 +72,7 @@ def registerRedirect():
 def logout():
     session.pop('username')  # <username> & <password> dpdt on form args
     session.pop('password')
+    session.pop('blog_id')
     return redirect("/")  # dpdt on login.html
 
 
@@ -125,17 +126,19 @@ def addBlogEntry():
     return render_template("addEntryForm.html")
 
 
-@app.route("/addEntryRead")
+@app.route("/addEntryRead", methods=['POST'])
 def addEntryRead():
-    entry_title = request.form['entry_title']
-    date_created = request.form['date_created']
-    entry_content = request.form['entry_content']
+    entry_title = request.form['entryTitle']
+    date_created = request.form['dateCreated']
+    entry_content = request.form['entryContent']
+    if entry_content == "" or date_created == "" or entry_content == "":
+        return render_template('blogError.html', error="You need to fill all three fields")
     blog_id = session['blog_id']
 
     createEntry(blog_id, session['username'],
                 entry_title, entry_content, date_created)
 
-    return redirect("/yourBlog")
+    return redirect("/home")
 
 
 """
@@ -157,9 +160,7 @@ def profile():
 def viewYourBlog():
     blog_id = request.args.get('blog_num')
     session['blog_id'] = blog_id
-
-    title = getBlogBasic(blog_id)[0]
-    bio = getBlogBasic(blog_id)[1]
+    title, bio, date, _id = getBlogBasic(blog_id)
 
     entry_info = []
     for entry_id in getBlogEntries(blog_id):
