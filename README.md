@@ -24,3 +24,4 @@ A blog hosting site with register, login, logout functionality. Users can view, 
 - It doesn't make sense to be able to choose the date created for blog creation, but we didn't have a way to record the current date
 - We didn't get to implement deleting entries
 - The home page does not list the author of each blog. (it's a surprise!)
+- Do not enter new lines in the blog bio
