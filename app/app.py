@@ -23,10 +23,9 @@ def home():
 
     return render_template("login.html")  # dpdt on login.html
 
+
 # login func
 # the register button should be in the login template but not in the fxn to redirect to register
-
-
 @app.route("/loginRead", methods=['POST'])  # takes info from the login form
 def login():
     # <username> & <password> dpdt on form args
@@ -92,8 +91,8 @@ def homePage():
 
     mid = len(blog_info) // 2
     return render_template("home.html", names=names,
-                           blog_info_part1=blog_info[:mid],
-                           blog_info_part2=blog_info[mid:])
+                           blog_info_part2=blog_info[:mid],
+                           blog_info_part1=blog_info[mid:])
 
     # return render_template("home.html", names=names)
 
@@ -155,28 +154,70 @@ def profile():
 
 
 # view your blog, has editing perms
-
-
 @app.route("/yourBlog")
 def viewYourBlog():
-    blog_id = request.args.get('blog_num')
+    blog_id = 0
+    username = ""
+    if ',,,' in request.args.get('blog_num'):
+
+        blog_id = request.args.get('blog_num').split(',,,')[0]
+        username = request.args.get('blog_num').split(',,,')[1]
+    else:
+        blog_id = request.args.get('blog_num')
+        username = request.args.get('user')
+
+    if username != session['username']:
+        return redirect("/blog?blog_num={}&user={}".format(blog_id, username))
+
     session['blog_id'] = blog_id
-    title, bio, date, _id = getBlogBasic(blog_id)
+    title, bio, date, _id, username = getBlogBasic(blog_id)
 
     entry_info = []
     for entry_id in getBlogEntries(blog_id):
         entry_info.append(list(getEntryInfo(entry_id)))
 
     return render_template("yourBlog.html", username=session['username'], entry_info=entry_info, blog_title=title, blog_bio=bio)
+
+
 # view other blogs, no editing perms
-
-
-"""
 @app.route("/blog")
 def viewBlog():
-    # <SOME CODE> dpdt on DB method to fetch blog data
-    return render_template()  # dpdt on blog.html
-"""
+    blog_id = request.args.get('blog_num')
+    username = request.args.get('user')
+
+    session['blog_id'] = blog_id
+    title, bio, date, _id, username = getBlogBasic(blog_id)
+
+    entry_info = []
+    for entry_id in getBlogEntries(blog_id):
+        entry_info.append(list(getEntryInfo(entry_id)))
+
+    return render_template("blog.html", username=username, entry_info=entry_info, blog_title=title, blog_bio=bio)
+
+
+@app.route("/editEntry", methods=['GET'])
+def entryEdit():
+    entry_id = request.args.get('entry_id')
+
+    entry_title = getEntryInfo(entry_id)[2]
+    entry_content = getEntryInfo(entry_id)[3]
+
+    return render_template("editEntryForm.html", entry_title=entry_title, entry_content=entry_content, entry_id=entry_id)
+
+
+@app.route("/editEntryRead", methods=['POST'])
+def editEntryRead():
+
+    new_entry_title = request.form['entryTitle']
+    new_entry_content = request.form['entryContent']
+    entry_id = request.form['entry_id']
+
+    if new_entry_content == "" or new_entry_title == "":
+        return render_template("entryEditError.html", error="Please fill in both fields")
+
+    editEntry(entry_id, new_entry_title, new_entry_content)
+    return redirect("/home")
+
 
 if __name__ == "__main__":
     app.debug = True

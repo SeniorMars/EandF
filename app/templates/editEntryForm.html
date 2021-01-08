@@ -15,7 +15,7 @@
 <body>
 	<h1>Team E and F</h1>
 	<p>Karl Hernandez, Eric Lo, Amelia Chin, Ari Schechter</p>
-	
+
 	<!-- requires entry_title and entry_content to be passed from app -->
 	<h2>Edit entry below.</h2>
 	<form action="/editEntryRead" method="POST">
@@ -25,9 +25,10 @@
 		<label for="entryContent">Entry Content</label>
 		<input type="text" name="entryContent" value="{{ entry_content }}">
 		<br>
+		<input type="hidden" name="entry_id" value="{{ entry_id }}">
 		<input type="submit">
-	</form>	
-	
+	</form>
+
 </body>
 
 </html>
