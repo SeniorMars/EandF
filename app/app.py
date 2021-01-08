@@ -144,13 +144,14 @@ def addEntryRead():
 # view profile
 @app.route("/profile")
 def profile():
-    blogs = getUserBlogs(session['user_id'])
+    user = request.args.get('user')
+    blogs = getUserBlogs(user)
     blog_info = []
 
     for blog_id in blogs:
         blog_info.append(list(getBlogBasic(blog_id)))
 
-    return render_template("profile.html", username=session['username'], length=len(blog_info), blog_info=blog_info)
+    return render_template("profile.html", username=user, length=len(blog_info), blog_info=blog_info)
 
 
 # view your blog, has editing perms
