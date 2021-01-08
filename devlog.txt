@@ -89,6 +89,15 @@ carlosH, arielS -- 2021-01-07 22:30
 - added db method getBlogUser 
 
 ericL, arielS -- 2021-01-08 00:10
-- added edit entry route and edit entry read route
+- added editEntry route and editEntryRead route
 - added db method editEntry
 - added editEntryError.html
+
+ameliaC, carlosH -- 2021-01-08 00:45
+- found a lot of open HTML tags and closed them
+- added Bootstrap
+
+ericL, ameliaC, arielS, carlosH -- 2021-01-08 01:10
+- added a logout button
+- in the navbar, included the username currently logged in
+- debugged our whole lives
