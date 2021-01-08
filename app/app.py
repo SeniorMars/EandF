@@ -132,7 +132,7 @@ def addEntryRead():
     date_created = request.form['dateCreated']
     entry_content = request.form['entryContent']
     if entry_content == "" or date_created == "" or entry_content == "":
-        return render_template('blogError.html', error="You need to fill all three fields")
+        return render_template('entryError.html', error="You need to fill all three fields")
     blog_id = session['blog_id']
 
     createEntry(blog_id, session['username'],
@@ -141,17 +141,17 @@ def addEntryRead():
     return redirect("/home")
 
 
-"""
-#view profile
+# view profile
 @app.route("/profile")
 def profile():
-    #Eventually add in the ability to reference any user id
-
     blogs = getUserBlogs(session['user_id'])
-    for blog in blogs:
-        blog_title, blog_bio, date_created = getBlogBasic(blog)
-    return render_template() #dpdt on profile.html
-"""
+    blog_info = []
+
+    for blog_id in blogs:
+        blog_info.append(list(getBlogBasic(blog_id)))
+
+    return render_template("profile.html", username=session['username'], length=len(blog_info), blog_info=blog_info)
+
 
 # view your blog, has editing perms
 
