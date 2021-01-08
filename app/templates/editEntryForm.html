@@ -54,12 +54,12 @@
 			<h2>Edit entry below.</h2>
 			<form action="/editEntryRead" method="POST">
 				<div class="form-row">
-					<label for="entryTitle">Entry Title</label>
+					<label for="entryTitle">Entry Title: </label>
 					<input type="text" name="entryTitle" value="{{ entry_title }}">
 					<br>
 				</div>
 				<div class="form-row">
-				<label for="entryContent">Entry Content</label>
+				<label for="entryContent">Entry Content: </label>
 				<textarea class="form-control" name="entryContent" rows="3">{{ entry_content }}</textarea>
 				</div>
 				<br>
