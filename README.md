@@ -24,5 +24,3 @@ A blog hosting site with register, login, logout functionality. Users can view, 
 - It doesn't make sense to be able to choose the date created for blog creation, but we didn't have a way to record the current date
 - We didn't get to implement deleting entries
 - The home page does not list the author of each blog. (it's a surprise!)
-
-# IF YOU STRIP THE CSS AWAY, THEN YOU WILL NOT HAVE ACCESS TO THE LOGOUT BUTTON AND YOU WILL NOT KNOW WHO YOU ARE LOGGED IN AS IF YOU HAVE MULTIPLE ACCOUNTS. TO LOGOUT, YOU NEED TO EITHER ENABLE CSS OR GO TO "/LOGOUT". TO KNOW WHO YOU ARE, CLICK ON A BLOG AND IF YOU HAVE EDITING PERMISSIONS, THEN THE AUTHOR OF THE BLOG IS YOU.
