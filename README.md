@@ -1,13 +1,13 @@
 # Blog by EandF
 A blog hosting site with register, login, logout functionality. Users can view, create, and edit blogs and their entries. 
 
-## Installation on Linux
+## Launch Codes
 ```sh
  $ git clone https://github.com/KarlWithK/EandF.git
  $ cd EandF/
  $ pip install -r requirements.txt
  $ flask run
- $ xdg-open http://localhost:500/
+ $ xdg-open http://localhost:5000/
 ```
 
 ## Roles:
