@@ -1,5 +1,7 @@
 # Blog by EandF
-A blog hosting site with register, login, logout functionality. Users can view, create, and edit blogs and their entries. 
+
+## Description 
+This is a blog hosting website. If you are a new user, register. If you are a returning user, login. On the home page, there are options to create a new blog and logout, as well as lists of other blogs and users. A user's profile displays all their blogs with their respective bios and a count of total blogs. Each blog displays its bio and all its entries. Each entry has a title, date created, and content. There is the option to add a new entry or edit an existing one. If you visit a blog that is not yours, you will not have adding or editing privileges. 
 
 ## Launch Codes
 ```sh
