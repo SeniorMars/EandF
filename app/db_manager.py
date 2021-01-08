@@ -53,10 +53,11 @@ def createTables():
 def getUserId(username: str) -> int:
     command = 'SELECT id FROM users WHERE username = "{}";'.format(
         username)
+    info = 0
     for row in c.execute(command):
-        info = row
+        info = row[0]
 
-    return info[0]
+    return info
 
 
 # returns a username for any given user_id
@@ -101,11 +102,11 @@ def getUserBlogs(user_id: int) -> list:
 
 # returns a tuple (title, bio, date_created, blog_id,) for any given blog_id
 def getBlogBasic(blog_id: int) -> tuple:
-    command = 'SELECT blog_title, blog_bio, date_created, blog_id, FROM blogs WHERE blog_id = "{}";'.format(
+    command = 'SELECT blog_title, blog_bio, date_created, blog_id, username FROM blogs WHERE blog_id = "{}";'.format(
         blog_id)
     blog_info = ()
     for row in c.execute(command):
-        blog_info += (row[0], row[1], row[2], row[3])
+        blog_info += (row[0], row[1], row[2], row[3], row[4])
     return blog_info
 
 
@@ -119,6 +120,7 @@ def getBlogUser(blog_id: int) -> str:
     return username
 
 
+# returns a tuple of all entries for a given blog
 def getBlogEntries(blog_id: int) -> list:
     command = 'SELECT entry_id FROM entries WHERE blog_id = "{}";'.format(
         blog_id)
@@ -126,8 +128,6 @@ def getBlogEntries(blog_id: int) -> list:
     for row in c.execute(command):
         entry_ids.append(row[0])
     return entry_ids
-
-# returns a list of all entries for a given blog
 
 
 def getEntryInfo(entry_id: int) -> tuple:
@@ -177,6 +177,13 @@ def createEntry(blog_id: int, username: str, entry_title: str, entry_content: st
     command = 'INSERT INTO entries VALUES({}, "{}", NULL, "{}", "{}", "{}");'.format(
         blog_id, username, entry_title, entry_content, date_created)
 
+    c.execute(command)
+    db.commit()
+
+
+def editEntry(entry_id: int, entry_title: str, entry_content: str):
+    command = 'UPDATE entries SET entry_title = "{}", entry_content = "{}" WHERE entry_id = "{}";'.format(
+        entry_title, entry_content, entry_id)
     c.execute(command)
     db.commit()
 
