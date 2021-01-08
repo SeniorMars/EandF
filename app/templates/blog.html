@@ -23,10 +23,6 @@
 
 	<p>About: {{ blog_bio }}<p>
 
-	<button type="button">
-		<a href="/addEntry">New Entry</a>
-	</button>
-
 	{% for entry in entry_info %}
 		<h4>{{ entry[2] }}</a> <!-- entry title -->
 		<br>
