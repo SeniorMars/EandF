@@ -119,21 +119,26 @@ def createBlogForm():
     # return render_template("successBlog.html") #dpdt on blog.html and the info asked from form
 
 
-"""
-#edit and add blog func
-#<TBD>
-
-# #delete blog entry func
-# @app.route("/delete") #might need a delete form on yourBlog.html that records if user clicks a delete button
-# def deleteEntry():
-#     #<SOME CODE> dpdt on DB method to pop the entry fron the blog
-#     return render_template() #dpdt on yourBlog.html
-
 # add blog entry func
 @app.route("/addEntry")
 def addBlogEntry():
-    pass
+    return render_template("addEntryForm.html")
 
+
+@app.route("/addEntryRead")
+def addEntryRead():
+    entry_title = request.form['entry_title']
+    date_created = request.form['date_created']
+    entry_content = request.form['entry_content']
+    blog_id = session['blog_id']
+
+    createEntry(blog_id, session['username'],
+                entry_title, entry_content, date_created)
+
+    return redirect("/yourBlog")
+
+
+"""
 #view profile
 @app.route("/profile")
 def profile():
@@ -151,17 +156,16 @@ def profile():
 @app.route("/yourBlog")
 def viewYourBlog():
     blog_id = request.args.get('blog_num')
-    # return str(blog_id)
+    session['blog_id'] = blog_id
 
     title = getBlogBasic(blog_id)[0]
+    bio = getBlogBasic(blog_id)[1]
 
     entry_info = []
     for entry_id in getBlogEntries(blog_id):
         entry_info.append(list(getEntryInfo(entry_id)))
 
-    # dpdt on yourBlog.html
-    return render_template("yourBlog.html", username=session['username'], entry_info=entry_info, blog_title=title)
-
+    return render_template("yourBlog.html", username=session['username'], entry_info=entry_info, blog_title=title, blog_bio=bio)
 # view other blogs, no editing perms
 
 
