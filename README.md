@@ -6,8 +6,9 @@ This is a blog hosting website. If you are a new user, register. If you are a re
 ## Launch Codes
 ```sh
  $ git clone https://github.com/KarlWithK/EandF.git
- $ cd EandF/app
+ $ cd EandF
  $ pip install -r requirements.txt
+ $ cd app
  $ python __init__.py
  $ xdg-open http://localhost:5000/
 ```
